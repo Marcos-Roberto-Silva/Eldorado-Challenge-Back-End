@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const devicesController = require("../controllers/DevicesController");
+const categoryController = require('../controllers/CategoriesController');
 
 /**
  * @swagger
@@ -85,5 +86,29 @@ router.get('/devices/:id', devicesController.getDeviceById);
  */
 
 router.delete('/devices/:id', devicesController.deleteDevice);
+
+/**
+ * @swagger
+ * /categories:
+ *  post:
+ *    tags: [Categories]
+ *    description: Use to insert a new device
+ *    consumes:
+ *      - application/json
+ *    parameters:
+ *      - in: body
+ *        name: categories
+ *        description: It saves a new category
+ *        required: true
+ *          - name
+ *        properties:
+ *          name:
+ *              type: string
+ *    responses:
+ *      '201':
+ *        description: Created
+ */
+
+ router.post('/categories', categoryController.createCategory);
 
 module.exports = router;
