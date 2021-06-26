@@ -12,7 +12,21 @@ const getAllcategories = async () => {
     return categories;
 };
 
+const getCategoryById = async (id) => {
+    const category = await Categories.findByPk(id);
+  
+    return category;
+};
+
+const DeleteCategory = async (id) => {
+    const category = await Categories.destroy({ where:{ id } });
+  
+    return category;
+};
+
 module.exports = {
     createCategory,
     getAllcategories,
+    getCategoryById,
+    DeleteCategory,
 };

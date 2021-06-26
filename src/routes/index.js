@@ -124,4 +124,42 @@ router.delete('/devices/:id', devicesController.deleteDevice);
 
 router.get('/categories', categoryController.getAllCategories);
 
+/**
+ * @swagger
+ * /categories/{id}:
+ *  get:
+ *    tags: [Categories]
+ *    parameters:
+ *    - in: path
+ *      name: id
+ *      required: true
+ *      type: integer
+ *      minimum: 1
+ *      description: List a category by its ID 
+ *    responses:
+ *      '200':
+ *        description: OK.
+ */
+
+router.get('/categories/:id', categoryController.getCategoryById);
+
+/**
+ * @swagger
+ * /categories/{id}:
+ *  delete:
+ *    tags: [Categories]
+ *    parameters:
+ *    - in: path
+ *      name: id
+ *      required: true
+ *      type: integer
+ *      minimum: 1
+ *      description: It removes a category by its ID 
+ *    responses:
+ *      '200':
+ *        description: OK.
+ */
+
+router.delete('/categories/:id', categoryController.deleteCategory);
+
 module.exports = router;
