@@ -111,4 +111,17 @@ router.delete('/devices/:id', devicesController.deleteDevice);
 
  router.post('/categories', categoryController.createCategory);
 
+ /**
+ * @swagger
+ * /categories:
+ *  get:
+ *    tags: [Categories]
+ *    description: It should list all categories.
+ *    responses:
+ *      '200':
+ *        description: OK.
+ */
+
+router.get('/categories', categoryController.getAllCategories);
+
 module.exports = router;
