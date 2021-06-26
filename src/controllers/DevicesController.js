@@ -12,7 +12,16 @@ const getAllDevices = async (_request, response) => {
     response.status(200).json(devices);
 }
 
+const getDeviceById = async (request, response) => {
+    const { id } = request.params;
+
+    const device = await devicesService.getDeviceById(id);
+  
+    response.status(200).json(device);
+};
+
 module.exports = { 
     createDevice,
     getAllDevices,
+    getDeviceById,
 };

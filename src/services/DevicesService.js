@@ -12,7 +12,14 @@ const getAllDevices = async () => {
   return devices;
 };
 
+const getDeviceById = async (id) => {
+  const device = await Devices.findByPk(id);
+
+  return device;
+};
+
   module.exports = {
     createDevice,
     getAllDevices,
+    getDeviceById,
   };

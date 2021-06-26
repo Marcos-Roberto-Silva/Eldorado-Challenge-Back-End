@@ -6,7 +6,7 @@ const devicesController = require("../controllers/DevicesController");
  * @swagger
  * /devices:
  *  post:
- *    tags: [Device]
+ *    tags: [Devices]
  *    description: Use to insert a new device
  *    consumes:
  *      - application/json
@@ -39,7 +39,7 @@ router.post("/devices", devicesController.createDevice);
  * @swagger
  * /devices:
  *  get:
- *    tags: [Device]
+ *    tags: [Devices]
  *    description: It should list all devices.
  *    responses:
  *      '200':
@@ -47,5 +47,24 @@ router.post("/devices", devicesController.createDevice);
  */
 
 router.get('/devices', devicesController.getAllDevices);
+
+/**
+ * @swagger
+ * /devices/{id}:
+ *  get:
+ *    tags: [Devices]
+ *    parameters:
+ *    - in: path
+ *      name: id
+ *      required: true
+ *      type: integer
+ *      minimum: 1
+ *      description: List a device by its ID 
+ *    responses:
+ *      '200':
+ *        description: OK.
+ */
+
+router.get('/devices/:id', devicesController.getDeviceById);
 
 module.exports = router;
