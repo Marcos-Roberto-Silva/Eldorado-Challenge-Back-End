@@ -18,8 +18,15 @@ const getDeviceById = async (id) => {
   return device;
 };
 
+const deleteDevice = async (id) => {
+  const device = await Devices.destroy({ where:{ id } });
+
+  return device;
+};
+
   module.exports = {
     createDevice,
     getAllDevices,
     getDeviceById,
+    deleteDevice,
   };

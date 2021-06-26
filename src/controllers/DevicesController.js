@@ -20,8 +20,19 @@ const getDeviceById = async (request, response) => {
     response.status(200).json(device);
 };
 
+const deleteDevice = async (request, response) => {
+    const { id } = request.params;
+
+    const DEVICE_DELETED = 'Device deleted';
+
+    await devicesService.deleteDevice(id);
+  
+    response.status(200).json({message: DEVICE_DELETED });
+};
+
 module.exports = { 
     createDevice,
     getAllDevices,
     getDeviceById,
+    deleteDevice,
 };

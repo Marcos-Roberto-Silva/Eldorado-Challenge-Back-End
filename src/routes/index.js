@@ -67,4 +67,23 @@ router.get('/devices', devicesController.getAllDevices);
 
 router.get('/devices/:id', devicesController.getDeviceById);
 
+/**
+ * @swagger
+ * /devices/{id}:
+ *  delete:
+ *    tags: [Devices]
+ *    parameters:
+ *    - in: path
+ *      name: id
+ *      required: true
+ *      type: integer
+ *      minimum: 1
+ *      description: List a device by its ID 
+ *    responses:
+ *      '200':
+ *        description: OK.
+ */
+
+router.delete('/devices/:id', devicesController.deleteDevice);
+
 module.exports = router;
