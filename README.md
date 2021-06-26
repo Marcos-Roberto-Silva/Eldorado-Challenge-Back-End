@@ -6,4 +6,4 @@
 
 #### To test the API functionality, download the aplication and execute `npm install` to install the dependencies.
 
-#### Once the API running, get started inserting the url `http://localhost:3000/api-docs/#/` on your preffered browser.
+#### Once the API running, insert the url `http://localhost:3000/api-docs/#/` on your preffered browser.
