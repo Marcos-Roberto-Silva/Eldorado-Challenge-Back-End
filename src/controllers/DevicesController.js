@@ -7,6 +7,12 @@ const createDevice = async (request, response) => {
     response.status(201).json(device);
 };
 
+const getAllDevices = async (_request, response) => {
+    const devices = await devicesService.getAllDevices();
+    response.status(200).json(devices);
+}
+
 module.exports = { 
     createDevice,
+    getAllDevices,
 };

@@ -30,9 +30,22 @@ const devicesController = require("../controllers/DevicesController");
  *              type: number
  *    responses:
  *      '201':
- *        description: It saves a device attributes.
+ *        description: Created
  */
 
 router.post("/devices", devicesController.createDevice);
+
+/**
+ * @swagger
+ * /devices:
+ *  get:
+ *    tags: [Device]
+ *    description: It should list all devices.
+ *    responses:
+ *      '200':
+ *        description: OK.
+ */
+
+router.get('/devices', devicesController.getAllDevices);
 
 module.exports = router;
