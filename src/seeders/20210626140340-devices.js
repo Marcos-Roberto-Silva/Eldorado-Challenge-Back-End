@@ -1,40 +1,35 @@
-'use strict';
+"use strict";
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    const BlogPostsTable = await queryInterface.createTable('Devices', {
-      id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      category: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      color: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      partNumber: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      categoryId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Categories',
-          key: 'id',
+  up: async (queryInterface, _Sequelize) => {
+    await queryInterface.bulkInsert(
+      "Devices",
+      [
+        {
+          id: 1,
+          category: "mobile",
+          color: "silver",
+          partNumber: 12121221,
+          categoryId: 1,
         },
-        onDelete: 'CASCADE',
-      },
-    });
-
-    return BlogPostsTable;
+        {
+          id: 2,
+          category: "smartTv",
+          color: "gray",
+          partNumber: 32345655,
+          categoryId: 2,
+        },
+        {
+          id: 3,
+          category: "Ipad",
+          color: "gray",
+          partNumber: 84039284,
+          categoryId: 1,
+        },
+      ]);
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Devices');
-  }
+    return queryInterface.bulkDelete('Devices', null, {});
+  },
 };
