@@ -2,7 +2,7 @@
 
 #### This application is a challenge where I created a simple program to manage devices.
 
-#### The user can insert, delete and list a divice by its id or get all list of divices.
+#### The user can insert, delete and list a device by its id or get all list of devices.
 
 #### To test the API functionality, download the aplication and execute `npm install` to install the dependencies.
 
