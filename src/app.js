@@ -1,5 +1,6 @@
 const express = require("express");
 const routes = require('./routes');
+
 const cors = require('cors');
 
 require("dotenv").config();
@@ -16,4 +17,4 @@ app.use('/', routes);
 
 require('./swagger-setup')(app);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));

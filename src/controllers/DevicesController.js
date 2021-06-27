@@ -2,7 +2,7 @@ const devicesService = require('../services/DevicesService');
 
 const createDevice = async (request, response) => {
     const attributesFields = request.body;
-    console.log(request.body);
+    
     const device = await devicesService.createDevice(attributesFields);
     response.status(201).json(device);
 };
@@ -30,9 +30,22 @@ const deleteDevice = async (request, response) => {
     response.status(200).json({message: DEVICE_DELETED });
 };
 
+const updateDevice = async (request, response) => {
+    const { id } = request.params;
+    const { category, color, partNumber, categoryId } = request.body;
+
+    const payload = { id, category, color, partNumber, categoryId };
+
+    const device = await devicesService.updateDevice(payload);
+    
+    response.status(200).json(device);
+};
+
+
 module.exports = { 
     createDevice,
     getAllDevices,
     getDeviceById,
     deleteDevice,
+    updateDevice,
 };

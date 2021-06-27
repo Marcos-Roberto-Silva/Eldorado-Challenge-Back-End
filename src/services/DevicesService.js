@@ -1,9 +1,9 @@
-const { Devices } = require('../models');
+const { Devices } = require("../models");
 
 const createDevice = async (attributesFields) => {
-    const device = await Devices.create(attributesFields);
-  
-    return device;
+  const device = await Devices.create(attributesFields);
+
+  return device;
 };
 
 const getAllDevices = async () => {
@@ -18,15 +18,30 @@ const getDeviceById = async (id) => {
   return device;
 };
 
+const updateDevice = async (payload) => {
+  const { id, category, color, partNumber, categoryId } = payload;
+
+  const device = await Devices.findOne({ where: { id } }).then( async (obj) => {
+
+     const newDevice = await obj.update({ category, color, partNumber, categoryId });
+      
+     return newDevice;
+
+  });
+ 
+  return device;
+};
+
 const deleteDevice = async (id) => {
-  const device = await Devices.destroy({ where:{ id } });
+  const device = await Devices.destroy({ where: { id } });
 
   return device;
 };
 
-  module.exports = {
-    createDevice,
-    getAllDevices,
-    getDeviceById,
-    deleteDevice,
-  };
+module.exports = {
+  createDevice,
+  getAllDevices,
+  getDeviceById,
+  deleteDevice,
+  updateDevice,
+};

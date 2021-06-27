@@ -1,17 +1,22 @@
 const createCategory = (sequelize, DataTypes) => {
-    const Categories = sequelize.define('Categories',  {
-        name: DataTypes.STRING,
-    }, 
+  const Categories = sequelize.define(
+    "Categories",
     {
-        timestamps: false,
+      name: DataTypes.STRING,
+    },
+    {
+      timestamps: false,
+    }
+  );
+
+  Categories.associate = (models) => {
+    Categories.hasMany(models.Devices, {
+      as: "devices",
+      foreignKey: "categoryId",
     });
+  };
 
-    Categories.associate = (models) => {
-        console.log(models);
-        Categories.hasMany(models.Devices, { as: 'devices', foreignKey: 'categoryId' });
-    };
-
-    return Categories;
+  return Categories;
 };
 
 module.exports = createCategory;
