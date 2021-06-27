@@ -24,9 +24,24 @@ const DeleteCategory = async (id) => {
     return category;
 };
 
+const updateCategory = async (payload) => {
+    const { id, name } = payload;
+  
+    const category = await Categories.findOne({ where: { id } }).then( async (obj) => {
+  
+       const newcategory = await obj.update({ name });
+        
+       return newcategory;
+  
+    });
+   
+    return category;
+  };
+
 module.exports = {
     createCategory,
     getAllcategories,
     getCategoryById,
     DeleteCategory,
+    updateCategory
 };

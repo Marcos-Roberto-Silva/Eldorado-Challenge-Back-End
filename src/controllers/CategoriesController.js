@@ -29,9 +29,21 @@ const deleteCategory = async (request, response) => {
     response.status(200).json({ message });
 };
 
+const updateCategory = async (request, response) => {
+    const { id } = request.params;
+    const { name } = request.body;
+
+    const payload = { id, name };
+
+    const category = await categoriesService.updateCategory(payload);
+
+    response.status(200).json(category);
+};
+
 module.exports = { 
     createCategory,
     getAllCategories,
     getCategoryById,
     deleteCategory,
+    updateCategory,
 };

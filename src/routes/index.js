@@ -14,7 +14,7 @@ const categoryController = require('../controllers/CategoriesController');
  *    parameters:
  *      - in: body
  *        name: devices
- *        description: Save your new device
+ *        description: It saves a device in the list.
  *        required: true
  *          - category
  *          - color
@@ -41,7 +41,7 @@ router.post("/devices", devicesController.createDevice);
  * /devices:
  *  get:
  *    tags: [Devices]
- *    description: It should list all devices.
+ *    description: It lists all devices.
  *    responses:
  *      '200':
  *        description: OK.
@@ -60,7 +60,7 @@ router.get('/devices', devicesController.getAllDevices);
  *      required: true
  *      type: integer
  *      minimum: 1
- *      description: List a device by its ID 
+ *      description: It lists a device by its ID 
  *    responses:
  *      '200':
  *        description: OK.
@@ -79,13 +79,15 @@ router.get('/devices/:id', devicesController.getDeviceById);
  *      required: true
  *      type: integer
  *      minimum: 1
- *      description: List a device by its ID 
+ *      description: It removes a device from the list, searching by its ID 
  *    responses:
  *      '200':
  *        description: OK.
  */
 
 router.delete('/devices/:id', devicesController.deleteDevice);
+
+router.put('/devices/:id', devicesController.updateDevice);
 
 /**
  * @swagger
@@ -98,7 +100,7 @@ router.delete('/devices/:id', devicesController.deleteDevice);
  *    parameters:
  *      - in: body
  *        name: categories
- *        description: It saves a new category
+ *        description: It saves a category in the list.
  *        required: true
  *          - name
  *        properties:
@@ -111,12 +113,13 @@ router.delete('/devices/:id', devicesController.deleteDevice);
 
  router.post('/categories', categoryController.createCategory);
 
+ router.put('/categories/:id', categoryController.updateCategory);
  /**
  * @swagger
  * /categories:
  *  get:
  *    tags: [Categories]
- *    description: It should list all categories.
+ *    description: It lists all categories.
  *    responses:
  *      '200':
  *        description: OK.
@@ -135,7 +138,7 @@ router.get('/categories', categoryController.getAllCategories);
  *      required: true
  *      type: integer
  *      minimum: 1
- *      description: List a category by its ID 
+ *      description: It lists a category by its ID 
  *    responses:
  *      '200':
  *        description: OK.
