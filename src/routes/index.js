@@ -1,7 +1,9 @@
 const router = require("express").Router();
+const { body } = require("express-validator");
 
 const devicesController = require("../controllers/DevicesController");
 const categoryController = require('../controllers/CategoriesController');
+const validator = require("../middleawares/middleFieldValidator");
 
 /**
  * @swagger
@@ -34,7 +36,12 @@ const categoryController = require('../controllers/CategoriesController');
  *        description: Created
  */
 
-router.post("/devices", devicesController.createDevice);
+router.post("/devices", 
+    body('category').isString().isLength({ min: 4 }),
+    body('color').isString().isLength({ min: 4, max: 16 }),
+    body('partNumber').not().isString().isLength({ max: 16  }),
+    body('categoryId').isString().isLength({ min: 16 }), validator,
+ devicesController.createDevice);
 
 /**
  * @swagger
