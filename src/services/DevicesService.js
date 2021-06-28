@@ -1,7 +1,9 @@
 const { Devices } = require("../models");
 
 const createDevice = async (attributesFields) => {
-  const device = await Devices.create(attributesFields);
+  const { category, color, partNumber, categoryId } = attributesFields;
+  
+  const device = await Devices.create({ category, color, partNumber, categoryId });
 
   return device;
 };
@@ -21,12 +23,18 @@ const getDeviceById = async (id) => {
 const updateDevice = async (payload) => {
   const { id, category, color, partNumber, categoryId } = payload;
 
-  const device = await Devices.findOne({ where: { id } }).then( async (obj) => {
+  const device = await Devices.findOne({ where: { id } }).then( async (device) => {
 
-     const newDevice = await obj.update({ category, color, partNumber, categoryId });
-      
-     return newDevice;
+    if(device) {
+      const newDevice = await device.update({ category, color, partNumber, categoryId });
 
+      return newDevice;
+
+    } else {
+      const newDevice = await createDevice({ category, color, partNumber, categoryId });
+
+      return newDevice;
+    }
   });
  
   return device;
