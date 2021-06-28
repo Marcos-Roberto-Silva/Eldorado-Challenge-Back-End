@@ -1,8 +1,15 @@
 const { Devices } = require("../models");
+const message = require("../util/messageError");
 
 const createDevice = async (attributesFields) => {
   const { category, color, partNumber, categoryId } = attributesFields;
   
+  const categoryExists = await getDeviceById(categoryId);
+
+  if (!categoryExists) {
+    return message.apiMessage;
+  }
+
   const device = await Devices.create({ category, color, partNumber, categoryId });
 
   return device;
