@@ -1,9 +1,14 @@
 const categoriesService = require('../services/CategoriesService');
 
 const createCategory = async (request, response) => {
-    const attributeField = request.body;
-    const category = await categoriesService.createCategory(attributeField);
-    response.status(201).json(category);
+    try {
+        const { name } = request.body;
+
+        const category = await categoriesService.createCategory({ name });
+        return response.status(201).json(category);
+    } catch (error) {
+        return response.status(500).json({ message: error });        
+    }
 };
 
 const getAllCategories = async (_request, response) => {

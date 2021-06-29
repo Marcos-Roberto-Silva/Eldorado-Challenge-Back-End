@@ -4,12 +4,12 @@ const createDevice = async (request, response) => {
     const attributesFields = request.body;
     
     const device = await devicesService.createDevice(attributesFields);
-    response.status(201).json(device);
+    return response.status(201).json(device);
 };
 
 const getAllDevices = async (_request, response) => {
     const devices = await devicesService.getAllDevices();
-    response.status(200).json(devices);
+    return response.status(200).json(devices);
 }
 
 const getDeviceById = async (request, response) => {
@@ -17,7 +17,7 @@ const getDeviceById = async (request, response) => {
 
     const device = await devicesService.getDeviceById(id);
   
-    response.status(200).json(device);
+    return response.status(200).json(device);
 };
 
 const deleteDevice = async (request, response) => {
@@ -27,7 +27,7 @@ const deleteDevice = async (request, response) => {
 
     await devicesService.deleteDevice(id);
   
-    response.status(200).json({message: DEVICE_DELETED });
+    return response.status(200).json({message: DEVICE_DELETED });
 };
 
 const updateDevice = async (request, response) => {
@@ -38,7 +38,7 @@ const updateDevice = async (request, response) => {
 
     const device = await devicesService.updateDevice(payload);
     
-    response.status(200).json(device);
+    return response.status(200).json(device);
 };
 
 

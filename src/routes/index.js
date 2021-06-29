@@ -37,11 +37,11 @@ const validator = require("../middleawares/middleFieldValidator");
  */
 
 router.post("/devices", 
-    body('category').isString().isLength({ min: 4 }),
+    body('category').not().isEmpty(),
     body('color').isString().isLength({ min: 4, max: 16 }),
-    body('partNumber').not().isString().isLength({ max: 16  }),
-    body('categoryId').isString().isLength({ min: 16 }), validator,
- devicesController.createDevice);
+    body('partNumber').not().isString().isLength({ min:1, max: 16  }),
+    body('categoryId').not().isString().not().isEmpty(), validator,
+    devicesController.createDevice);
 
 /**
  * @swagger
@@ -118,7 +118,9 @@ router.put('/devices/:id', devicesController.updateDevice);
  *        description: Created
  */
 
- router.post('/categories', categoryController.createCategory);
+ router.post('/categories', 
+    body('name').isString().isLength({ min: 4, max: 16 }), 
+    validator, categoryController.createCategory);
 
  router.put('/categories/:id', categoryController.updateCategory);
  /**
