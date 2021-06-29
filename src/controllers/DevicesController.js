@@ -8,7 +8,8 @@ const createDevice = async (request, response) => {
     if (device.code) {
         return response.status(device.code).json(device.codeMsg);
     }
-    return response.status(201).json(true);
+    
+    return response.status(201).json(device);
 };
 
 const getAllDevices = async (_request, response) => {
