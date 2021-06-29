@@ -4,7 +4,7 @@ const messageError = {
     categoryError: 'The field category can not be empty.',
     partNumberError: 'The part number is required and must be a positive number',
     categoryIdError: 'The category ID is required and must be a number',
-    apiMessageError: 'The required category does not exists for the field categoryId.'
+    requestNotFound: false
 };
 
 module.exports = messageError;
