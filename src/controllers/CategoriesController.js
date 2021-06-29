@@ -5,7 +5,14 @@ const createCategory = async (request, response) => {
         const { name } = request.body;
 
         const category = await categoriesService.createCategory({ name });
-        return response.status(201).json(category);
+       
+        if (category.code) {
+            console.log('entrei');
+            return response.status(category.code).json(category.codeMsg);
+        }
+
+        return response.status(201).json({ message: true });
+
     } catch (error) {
         return response.status(500).json({ message: error });        
     }
@@ -21,6 +28,10 @@ const getCategoryById = async (request, response) => {
 
     const category = await categoriesService.getCategoryById(id);
   
+    if (category.code) {
+        return response.status(category.code).json(category.codeMsg);
+    }
+
     response.status(200).json(category);
 };
 
@@ -29,7 +40,11 @@ const deleteCategory = async (request, response) => {
 
     const message = 'category removed';
 
-    await categoriesService.DeleteCategory(id);
+    const target = await categoriesService.DeleteCategory(id);
+
+    if (target.code) {
+        return response.status(target.code).json(target.codeMsg);
+    }
   
     response.status(200).json({ message });
 };

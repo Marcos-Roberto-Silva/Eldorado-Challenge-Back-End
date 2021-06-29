@@ -1,13 +1,15 @@
 const { Devices } = require("../models");
-const message = require("../util/messageError");
+const checkIf = require("../util/isValid");
 
 const createDevice = async (attributesFields) => {
   const { category, color, partNumber, categoryId } = attributesFields;
   
-  const categoryExists = await getDeviceById(categoryId);
+  const result = await getDeviceById(categoryId);
 
-  if (!categoryExists) {
-    return message.apiMessage;
+  const checkIfcategoryExists = await checkIf.itExists(result);
+
+  if (checkIfcategoryExists.code) {
+    return checkIfcategoryExists;
   }
 
   const device = await Devices.create({ category, color, partNumber, categoryId });
@@ -23,6 +25,12 @@ const getAllDevices = async () => {
 
 const getDeviceById = async (id) => {
   const device = await Devices.findByPk(id);
+
+  const result = await checkIf.itExists(device);
+
+  if (result.code) {
+    return result;
+  }
 
   return device;
 };
@@ -50,6 +58,11 @@ const updateDevice = async (payload) => {
 const deleteDevice = async (id) => {
   const device = await Devices.destroy({ where: { id } });
 
+  const result = await checkIf.itExists(device);
+
+  if (result.code) {
+    return result;
+  }
   return device;
 };
 
