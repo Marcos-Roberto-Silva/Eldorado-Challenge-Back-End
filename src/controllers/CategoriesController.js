@@ -11,7 +11,7 @@ const createCategory = async (request, response) => {
             return response.status(category.code).json(category.codeMsg);
         }
 
-        return response.status(201).json({ message: true });
+        return response.status(201).json(category);
 
     } catch (error) {
         return response.status(500).json({ message: error });        

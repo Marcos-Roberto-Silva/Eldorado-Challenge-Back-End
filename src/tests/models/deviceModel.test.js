@@ -1,26 +1,36 @@
-const { expect } = require('chai');
+const { expect } = require("chai");
 
-const DevicesModel = require('../../models/DeviceModel');
+const SequelizeMock = require("sequelize-mock");
+const DBConnectionMock = new SequelizeMock();
 
-describe('Should insert a device into the database', () => {
-    const payloadDevice = { 
-        category: 'smart-TV',
-        color: "silver-gray",
-        partNumber: 12345678,
-        categoryId: 1
-    }
+const DeviceMock = DBConnectionMock.define(
+  "Devices",{},
+  {
+    instanceMethods: {
+      myTestFunc: function () {
+        return "Test Devices";
+      },
+    },
+  }
+);
 
-    describe('When it is successful inserted', async () => {
-        it('should retrive an object', async () =>  {
-            const response = await DevicesModel.create(payloadDevice);
+describe("Inserting a new device on the database", () => {
+  const payloadCategory = {
+    category: "sasasa",
+    color: "111111",
+    partNumber: 78787,
+    categoryId: 1,
+  };
 
-            expect(response).to.be.a('object');
-        });
-
-        it('tal objeto possui o "id" do novo filme inserido', async () => {
-            const response = await DevicesModel.create(payloadMovie);
-      
-            expect(response).to.have.a.property('id')
-        });
+  describe("When inserted with success", () => {
+    it(" should return an object", async () => {
+      const response = await DeviceMock.create(payloadCategory);
+      expect(response).to.be.a("object");
     });
-})
+
+    it('should has the device "id" ', async () => {
+      const response = await DeviceMock.create(payloadCategory);
+      expect(response).to.have.a.property("id");
+    });
+  });
+});
