@@ -6,4 +6,6 @@
 
 #### To test the API functionality, download the aplication and execute `npm install` to install the dependencies.
 
+#### In a terminal execute ´npx sequelize db:create´
+
 #### Once the API running, insert the url `http://localhost:3000/api-docs/#/` on your preffered browser.
