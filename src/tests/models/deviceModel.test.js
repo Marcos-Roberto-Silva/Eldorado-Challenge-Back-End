@@ -28,7 +28,7 @@ describe("Inserting a new device on the database", () => {
       expect(response).to.be.a("object");
     });
 
-    it('The objeto has the device "id" ', async () => {
+    it('should has the device "id" ', async () => {
       const response = await DeviceMock.create(payloadCategory);
       expect(response).to.have.a.property("id");
     });

@@ -26,19 +26,19 @@ describe('Inserting a new category on database', () => {
       expect(response).to.be.a('object');
     });
 
-    it('The objeto has the category "id" ', async () => {
+    it('should has the category "id" ', async () => {
       const response = await CategoryMock.create(payloadCategory);
       expect(response).to.have.a.property('id');
     });
 
-    it('The object has the attribute "name" ', async () => {
+    it('should has the attribute "name" ', async () => {
       const response = await CategoryMock.create(payloadCategory);
       expect(response).to.have.a.property('name');
     });
 
-    it('The object has the attribute "xablau" ', async () => {
+    it('should not has the attribute "xablau" ', async () => {
       const response = await CategoryMock.create(payloadCategory);
-      expect(response).to.have.a.property('xablau');
+      expect(response).to.not.have.a.property('xablau');
       //should fail
     });
   });
