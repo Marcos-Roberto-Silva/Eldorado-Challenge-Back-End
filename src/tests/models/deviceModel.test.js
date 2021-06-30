@@ -1,26 +1,26 @@
 const { expect } = require('chai');
 
-const DevicesModel = require('../../models/DeviceModel');
+const { Devices } = require('../../models')
 
-describe('Should insert a device into the database', () => {
-    const payloadDevice = { 
-        category: 'smart-TV',
-        color: "silver-gray",
-        partNumber: 12345678,
-        categoryId: 1
-    }
+describe('Inserting a new device on the database', () => {
 
-    describe('When it is successful inserted', async () => {
-        it('should retrive an object', async () =>  {
-            const response = await DevicesModel.create(payloadDevice);
+  const payloadCategory = {
+    "category": "sasasa",
+    "color": "111111",
+    "partNumber": 78787,
+    "categoryId": 1
+ }
 
-            expect(response).to.be.a('object');
-        });
+  describe('When inserted with success', () => {
 
-        it('tal objeto possui o "id" do novo filme inserido', async () => {
-            const response = await DevicesModel.create(payloadMovie);
-      
-            expect(response).to.have.a.property('id')
-        });
+    it(' should return an object', async () => {
+      const response = await Devices.create(payloadCategory);
+      expect(response).to.be.a('object');
     });
-})
+
+    it('The objeto has the device "id" ', async () => {
+      const response = await Devices.create(payloadCategory);
+      expect(response).to.have.a.property('id');
+    });
+  });
+});
