@@ -4,7 +4,7 @@ const httpstatus = require("../util/httpStatus");
 
 const validationFieldContent = (request, response, next) => {
   const errorObj = validationResult(request);
-  console.log(errorObj);
+  
   if (request.body.partNumber < 0) {
     return response.status(httpstatus.BadRequest).json({ message: errorMsg.partNumberError });
   }
