@@ -4,7 +4,7 @@
 
 #### The user is able to insert, delete and list a device by its id or get all list of devices from MySql database.
 
-#### In order to testing the API functionality install the dependencies and setting up environment variables
+#### In order for testing the API functionality install the dependencies and setting up environment variables
 ##### `npm install`
 #### Set up the .env file with the following information:
 `MYSQL_USER=yourUser`
