@@ -2,7 +2,7 @@
 
 #### This application is a challenge where I've created a simple program to manage devices.
 
-#### The user can insert, delete and list a device by its id or get all list of devices from MySql database.
+#### The user is able to insert, delete and list a device by its id or get all list of devices from MySql database.
 
 #### In order to testing the API functionality install the dependencies and setting up environment variables
 ##### `npm install`
